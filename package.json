@@ -1,0 +1,26 @@
+{
+  "name": "google-hotels-scraper",
+  "version": "1.0",
+  "description": "Google Hotels Scraper using Playwright Firefox to fetch data from internal API.",
+  "type": "module",
+  "dependencies": {
+    "apify": "^3.7.1",
+    "crawlee": "^3.16.0",
+    "playwright": "1.59.1"
+  },
+  "devDependencies": {
+    "@apify/eslint-config": "^2.0.0",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.5.3"
+  },
+  "scripts": {
+    "start": "node src/main.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "author": "Shahid Irfan",
+  "license": "ISC"
+}

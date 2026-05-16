@@ -1,0 +1,53 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "name": {
+            "type": "string",
+            "title": "Hotel Name"
+        },
+        "hotelId": {
+            "type": "string",
+            "title": "Hotel ID"
+        },
+        "hotelDescription": {
+            "type": "string",
+            "title": "Description"
+        },
+        "rating": {
+            "type": "number",
+            "title": "Rating"
+        },
+        "reviewsCount": {
+            "type": "integer",
+            "title": "Review Count"
+        },
+        "category": {
+            "type": "string",
+            "title": "Category"
+        },
+        "price": {
+            "type": "number",
+            "title": "Price"
+        },
+        "currency": {
+            "type": "string",
+            "title": "Currency"
+        },
+        "address": {
+            "type": "string",
+            "title": "Address"
+        },
+        "imageUrl": {
+            "type": "string",
+            "title": "Image URL"
+        },
+        "url": {
+            "type": "string",
+            "title": "URL"
+        },
+        "location": {
+            "type": "object",
+            "title": "Location"
+        }
+    }
+}

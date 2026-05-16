@@ -1,0 +1,45 @@
+{
+    "title": "Google Hotels Scraper",
+    "description": "Scrape hotel listings from Google Travel (Hotels) search by URL or keyword. API-based extraction using Playwright Firefox.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrl": {
+            "title": "Start URL",
+            "type": "string",
+            "description": "The URL of the Google Hotels search page to start from.",
+            "editor": "textfield",
+            "prefill": "https://www.google.com/travel/search?q=hotels+in+London"
+        },
+
+        "results_wanted": {
+            "title": "Results Wanted",
+            "type": "integer",
+            "description": "The maximum number of hotel listings to collect.",
+            "minimum": 1,
+            "default": 20,
+            "prefill": 20,
+            "editor": "number"
+        },
+        "max_pages": {
+            "title": "Maximum Pages",
+            "type": "integer",
+            "description": "The maximum number of pages to scroll/paginate through.",
+            "minimum": 1,
+            "default": 1,
+            "prefill": 1,
+            "editor": "number"
+        },
+        "proxyConfiguration": {
+            "title": "Proxy Configuration",
+            "type": "object",
+            "description": "Use Apify Proxy for reliable results.",
+            "editor": "proxy",
+            "default": {
+                "useApifyProxy": true
+            }
+        }
+    },
+    "required": [],
+    "additionalProperties": false
+}
