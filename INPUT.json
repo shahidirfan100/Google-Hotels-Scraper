@@ -1,8 +1,8 @@
 {
-    "startUrl": "https://www.google.com/travel/search?q=hotels+in+London",
+    "keyword": "hotels in London",
     "results_wanted": 20,
-    "max_pages": 1,
+    "max_pages": 5,
     "proxyConfiguration": {
-        "useApifyProxy": true
+        "useApifyProxy": false
     }
 }

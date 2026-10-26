@@ -1,0 +1,18 @@
+export const GOOGLE_ORIGIN = 'https://www.google.com';
+export const DEFAULT_SEARCH_URL = 'https://www.google.com/travel/search?q=hotels%20in%20London&hl=en&gl=us';
+export const DEFAULT_RPC_ID = 'AtySUc';
+export const DEFAULT_SERVICE_PATH = '/_/TravelFrontendUi';
+export const DEFAULT_LOCALE = 'en';
+export const DEFAULT_COUNTRY = 'us';
+export const DEFAULT_CURRENCY = 'USD';
+export const DEFAULT_RESULTS = 20;
+export const DEFAULT_MAX_PAGES = 15;
+export const MAX_RESULTS = 500;
+export const MAX_PAGES = 50;
+export const REQUEST_TIMEOUT_MS = 45000;
+export const PROFILE_ATTEMPTS = 2;
+export const RPC_ATTEMPTS = 3;
+export const MAX_EMPTY_PAGES = 3;
+export const CONSENT_COOKIE = 'CONSENT=YES+cb.20210328-17-p0.en+FX+917; SOCS=CAI';
+export const PROFILE_SEQUENCE = ['chrome', 'chrome142', 'firefox', 'chrome151', 'ios18'];
+export const MOBILE_PROFILES = new Set(['ios18']);

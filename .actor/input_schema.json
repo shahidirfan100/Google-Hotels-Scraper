@@ -1,42 +1,48 @@
 {
     "title": "Google Hotels Scraper",
-    "description": "Scrape hotel listings from Google Travel (Hotels) search by URL or keyword. API-based extraction using Playwright Firefox.",
+    "description": "Collect hotel listings from Google Hotels by URL or keyword. Prices, ratings, reviews, images, deal labels, and booking links are read from Google's result data.",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
         "startUrl": {
             "title": "Start URL",
             "type": "string",
-            "description": "The URL of the Google Hotels search page to start from.",
+            "description": "Google Hotels search URL. Used when no keyword is supplied.",
             "editor": "textfield",
-            "prefill": "https://www.google.com/travel/search?q=hotels+in+London"
+            "prefill": "https://www.google.com/travel/search?q=hotels%20in%20London&hl=en&gl=us",
+            "default": "https://www.google.com/travel/search?q=hotels%20in%20London&hl=en&gl=us"
         },
-
+        "keyword": {
+            "title": "Keyword",
+            "type": "string",
+            "description": "Search text such as \"hotels in Paris\". Takes precedence over startUrl when supplied.",
+            "editor": "textfield"
+        },
         "results_wanted": {
             "title": "Results Wanted",
             "type": "integer",
-            "description": "The maximum number of hotel listings to collect.",
+            "description": "Maximum number of hotel listings to save.",
             "minimum": 1,
+            "maximum": 500,
             "default": 20,
-            "prefill": 20,
             "editor": "number"
         },
         "max_pages": {
             "title": "Maximum Pages",
             "type": "integer",
-            "description": "The maximum number of pages to scroll/paginate through.",
+            "description": "Maximum number of Google result pages to request. In testing, broad city searches returned 48 to 70 unique hotels.",
             "minimum": 1,
-            "default": 1,
-            "prefill": 1,
+            "maximum": 50,
+            "default": 15,
             "editor": "number"
         },
         "proxyConfiguration": {
             "title": "Proxy Configuration",
             "type": "object",
-            "description": "Use Apify Proxy for reliable results.",
+            "description": "Apify Proxy is off by default. Turn it on or add custom proxy URLs if Google blocks your runs.",
             "editor": "proxy",
             "default": {
-                "useApifyProxy": true
+                "useApifyProxy": false
             }
         }
     },

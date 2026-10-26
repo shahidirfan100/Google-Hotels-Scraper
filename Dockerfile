@@ -1,16 +1,18 @@
-# Use the official Apify Playwright Firefox image
-FROM apify/actor-node-playwright-firefox:24-1.59.1
+FROM apify/actor-node:22
 
-# Copy just package.json and package-lock.json first for caching
 COPY --chown=myuser:myuser package*.json ./
 
-# Install NPM packages (production only)
 RUN npm --quiet set progress=false \
-    && npm install --omit=dev --omit=optional \
-    && rm -r ~/.npm
+    && npm install --omit=dev \
+    && node -e "import('impit').then((m) => console.log('impit OK:', Object.keys(m)))" \
+    && echo "Installed NPM packages:" \
+    && (npm list --omit=dev --all || true) \
+    && echo "Node.js version:" \
+    && node --version \
+    && echo "NPM version:" \
+    && npm --version \
+    && rm -rf ~/.npm
 
-# Copy remaining source code
 COPY --chown=myuser:myuser . ./
 
-# Start the actor
 CMD npm start --silent

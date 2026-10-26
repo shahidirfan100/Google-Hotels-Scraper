@@ -1,53 +1,389 @@
 {
     "actorSpecification": 1,
+    "title": "Google Hotels dataset",
+    "description": "Hotel listings collected from Google Hotels search results.",
     "fields": {
-        "name": {
-            "type": "string",
-            "title": "Hotel Name"
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "title": "Hotel Name",
+                "description": "Hotel name as shown in Google Hotels."
+            },
+            "hotelId": {
+                "type": "string",
+                "title": "Hotel ID",
+                "description": "Google hotel identifier."
+            },
+            "entityId": {
+                "type": "string",
+                "title": "Google Entity ID",
+                "description": "Google entity identifier used in hotel URLs."
+            },
+            "url": {
+                "type": "string",
+                "title": "Google Hotels URL",
+                "description": "Google Hotels page for the hotel."
+            },
+            "rating": {
+                "type": "number",
+                "title": "Rating",
+                "description": "Guest rating from 0 to 5."
+            },
+            "reviewsCount": {
+                "type": "integer",
+                "title": "Review Count",
+                "description": "Number of guest reviews."
+            },
+            "ratingBreakdown": {
+                "type": "object",
+                "title": "Rating Breakdown",
+                "description": "Review counts by star rating.",
+                "properties": {
+                    "5": {
+                        "type": "integer"
+                    },
+                    "4": {
+                        "type": "integer"
+                    },
+                    "3": {
+                        "type": "integer"
+                    },
+                    "2": {
+                        "type": "integer"
+                    },
+                    "1": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "reviewScores": {
+                "type": "array",
+                "title": "Review Scores",
+                "description": "Guest sentiment scores by review category.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "category": {
+                            "type": "string"
+                        },
+                        "score": {
+                            "type": "number"
+                        },
+                        "mentions": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "stars": {
+                "type": "number",
+                "title": "Star Class",
+                "description": "Star class when Google reports one."
+            },
+            "category": {
+                "type": "string",
+                "title": "Category",
+                "description": "Property category such as 4-star hotel."
+            },
+            "propertyType": {
+                "type": "string",
+                "title": "Property Type",
+                "description": "Google property type such as hotel, hostel, resort, or vacation rental."
+            },
+            "sleeps": {
+                "type": "integer",
+                "title": "Sleeps",
+                "description": "Guest capacity shown for vacation rentals."
+            },
+            "bedrooms": {
+                "type": "integer",
+                "title": "Bedrooms",
+                "description": "Bedroom count shown for vacation rentals."
+            },
+            "bathrooms": {
+                "type": "number",
+                "title": "Bathrooms",
+                "description": "Bathroom count shown for vacation rentals."
+            },
+            "price": {
+                "type": "number",
+                "title": "Price",
+                "description": "Price shown for the search dates."
+            },
+            "priceText": {
+                "type": "string",
+                "title": "Price Text",
+                "description": "Price text as Google displays it, including currency."
+            },
+            "currency": {
+                "type": "string",
+                "title": "Currency",
+                "description": "Currency code such as USD or EUR."
+            },
+            "dealText": {
+                "type": "string",
+                "title": "Deal",
+                "description": "Deal label shown on the listing, such as a price drop."
+            },
+            "bookingUrl": {
+                "type": "string",
+                "title": "Booking Link",
+                "description": "Google redirect link for the displayed price."
+            },
+            "bookingProviders": {
+                "type": "array",
+                "title": "Booking Providers",
+                "description": "Booking sites and external links shown for the listing.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "amenities": {
+                "type": "array",
+                "title": "Amenities",
+                "description": "Amenities marked as available on the listing.",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "location": {
+                "type": "object",
+                "title": "Location",
+                "description": "Latitude and longitude coordinates.",
+                "properties": {
+                    "lat": {
+                        "type": "number",
+                        "title": "Latitude"
+                    },
+                    "lng": {
+                        "type": "number",
+                        "title": "Longitude"
+                    }
+                }
+            },
+            "imageUrl": {
+                "type": "string",
+                "title": "Image URL",
+                "description": "Main hotel image."
+            },
+            "images": {
+                "type": "array",
+                "title": "Images",
+                "description": "Image URLs shown on the listing, up to eight.",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "website": {
+                "type": "string",
+                "title": "Hotel Website",
+                "description": "Hotel website when Google lists one."
+            },
+            "countryCode": {
+                "type": "string",
+                "title": "Country Code",
+                "description": "Two-letter country code."
+            },
+            "checkInTime": {
+                "type": "string",
+                "title": "Check-in Time",
+                "description": "Check-in time when listed."
+            },
+            "checkOutTime": {
+                "type": "string",
+                "title": "Check-out Time",
+                "description": "Check-out time when listed."
+            }
+        }
+    },
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "description": "Price, rating, property type, deal, and booking fields for a quick scan.",
+            "transformation": {
+                "fields": [
+                    "name",
+                    "imageUrl",
+                    "price",
+                    "currency",
+                    "rating",
+                    "reviewsCount",
+                    "category",
+                    "propertyType",
+                    "dealText",
+                    "url"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "name": {
+                        "label": "Hotel"
+                    },
+                    "imageUrl": {
+                        "label": "Photo",
+                        "format": "image"
+                    },
+                    "price": {
+                        "label": "Price",
+                        "format": "number"
+                    },
+                    "currency": {
+                        "label": "Currency"
+                    },
+                    "rating": {
+                        "label": "Rating",
+                        "format": "number"
+                    },
+                    "reviewsCount": {
+                        "label": "Reviews",
+                        "format": "number"
+                    },
+                    "category": {
+                        "label": "Category"
+                    },
+                    "propertyType": {
+                        "label": "Type"
+                    },
+                    "dealText": {
+                        "label": "Deal"
+                    },
+                    "url": {
+                        "label": "Google Hotels",
+                        "format": "link"
+                    }
+                }
+            }
         },
-        "hotelId": {
-            "type": "string",
-            "title": "Hotel ID"
-        },
-        "hotelDescription": {
-            "type": "string",
-            "title": "Description"
-        },
-        "rating": {
-            "type": "number",
-            "title": "Rating"
-        },
-        "reviewsCount": {
-            "type": "integer",
-            "title": "Review Count"
-        },
-        "category": {
-            "type": "string",
-            "title": "Category"
-        },
-        "price": {
-            "type": "number",
-            "title": "Price"
-        },
-        "currency": {
-            "type": "string",
-            "title": "Currency"
-        },
-        "address": {
-            "type": "string",
-            "title": "Address"
-        },
-        "imageUrl": {
-            "type": "string",
-            "title": "Image URL"
-        },
-        "url": {
-            "type": "string",
-            "title": "URL"
-        },
-        "location": {
-            "type": "object",
-            "title": "Location"
+        "all": {
+            "title": "All fields",
+            "description": "Every field returned by the actor, in storage order.",
+            "transformation": {
+                "fields": [
+                    "name",
+                    "hotelId",
+                    "entityId",
+                    "url",
+                    "rating",
+                    "reviewsCount",
+                    "ratingBreakdown",
+                    "reviewScores",
+                    "stars",
+                    "category",
+                    "propertyType",
+                    "sleeps",
+                    "bedrooms",
+                    "bathrooms",
+                    "price",
+                    "priceText",
+                    "currency",
+                    "dealText",
+                    "bookingUrl",
+                    "bookingProviders",
+                    "amenities",
+                    "location",
+                    "imageUrl",
+                    "images",
+                    "website",
+                    "countryCode",
+                    "checkInTime",
+                    "checkOutTime"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "name": {
+                        "label": "Hotel"
+                    },
+                    "url": {
+                        "label": "Google Hotels",
+                        "format": "link"
+                    },
+                    "rating": {
+                        "label": "Rating",
+                        "format": "number"
+                    },
+                    "reviewsCount": {
+                        "label": "Reviews",
+                        "format": "number"
+                    },
+                    "ratingBreakdown": {
+                        "label": "Rating Breakdown",
+                        "format": "object"
+                    },
+                    "reviewScores": {
+                        "label": "Review Scores",
+                        "format": "array"
+                    },
+                    "stars": {
+                        "label": "Stars",
+                        "format": "number"
+                    },
+                    "propertyType": {
+                        "label": "Type"
+                    },
+                    "sleeps": {
+                        "label": "Sleeps",
+                        "format": "number"
+                    },
+                    "bedrooms": {
+                        "label": "Bedrooms",
+                        "format": "number"
+                    },
+                    "bathrooms": {
+                        "label": "Bathrooms",
+                        "format": "number"
+                    },
+                    "price": {
+                        "label": "Price",
+                        "format": "number"
+                    },
+                    "priceText": {
+                        "label": "Price Text"
+                    },
+                    "dealText": {
+                        "label": "Deal"
+                    },
+                    "bookingUrl": {
+                        "label": "Booking Link",
+                        "format": "link"
+                    },
+                    "bookingProviders": {
+                        "label": "Booking Providers",
+                        "format": "array"
+                    },
+                    "amenities": {
+                        "label": "Amenities",
+                        "format": "array"
+                    },
+                    "imageUrl": {
+                        "label": "Photo",
+                        "format": "image"
+                    },
+                    "images": {
+                        "label": "Images",
+                        "format": "array"
+                    },
+                    "website": {
+                        "label": "Website",
+                        "format": "link"
+                    },
+                    "location": {
+                        "label": "Coordinates",
+                        "format": "object"
+                    }
+                }
+            }
         }
     }
 }
